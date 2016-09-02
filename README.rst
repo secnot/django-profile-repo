@@ -3,8 +3,7 @@ django-profile-repo
 =============================
 
 Django-profile-repo is a simple application that allows you to manage multi-model user 
-profiles in a unified manner. Without needing to add a Foreign key to the user to each
-model.
+profiles in a unified manner. Without needing to add a Foreign key to each model.
 
 
     
