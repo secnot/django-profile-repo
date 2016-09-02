@@ -97,7 +97,7 @@ You can also retrieve all the models associated with an user with **get_all_prof
 
 Lastly this associations are unique in the sense that only one model of each class 
 can be associated with an user at a time. If you try to add to a user profile two
-models of the same class the older one will be discarded.
+models of the same class the older one will be discarded (but not deleted).
 
 
 Running Tests
