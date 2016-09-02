@@ -90,7 +90,7 @@ Or if you also want the referenced model deleted::
 
     >> del_profile(user, PrintConfig, delete_model=True)
     
-To retreive all the models associated with an user with **get_all_profiles**::
+You can also retrieve all the models associated with an user with **get_all_profiles**::
 
     >> get_all_profiles(user)
     [<PrintConfig: PrintConfig object>, <DeliveryAddress: DeliveryAddress object>]
