@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.db import models
+from django.db import models, transaction
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -15,6 +15,7 @@ def extract_content_type(model):
     return ContentType.objects.get_for_model(model)
 
 class UserProfileManager(models.Manager):
+
     def get_profile(self, user, model_class=None):
         """
         Arguments:
@@ -83,12 +84,9 @@ class UserProfileManager(models.Manager):
         try:
             profile = self.get_profile(user, model_class)
         except ObjectDoesNotExist:
-            profile = model_class.objects.create(**defaults)
-            try:
-                self.set_profile(user, profile)
-            except Exception as err:
-                profile.delete()
-                raise err
+            with transaction.atomic():
+                profile = model_class.objects.create(**defaults)
+                user_profile = self.create(user=user, content_object=profile)
 
         return profile
 
